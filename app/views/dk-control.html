@@ -1,0 +1,47 @@
+<div class="cdkControl1">
+<md-button class="md-raised md-primary" md-theme="deep-orange">Add</md-button>
+</div>  
+<accordion close-others="oneAtATime">
+  <accordion-group heading="{{meeting.title}}" ng-repeat="meeting in meetings" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+     <accordion-heading>
+       <section layout="horizontal">
+       <b flex="80">{{meeting.title}}</b>
+       <div flex="20">
+         <md-button class="md-raised md-primary" md-theme="teal" ng-click="sayHello()">0% (0)</md-button>
+         <md-button class="md-raised md-primary" md-theme="deep-purple" ng-click="sayHello()">Add</md-button>
+       </div>
+       </section>
+     </accordion-heading>
+     {{meeting.description}}
+     <accordion close-others="oneAtATime">
+        <accordion-group heading="{{data1.date}}" ng-repeat="data1 in meeting.data">
+         <accordion-heading>
+           <section layout="horizontal">
+             <b flex="90">{{data1.date}}</b>
+             <div flex="10">
+              <md-button class="md-raised md-primary" md-theme="blue-grey" ng-click="sayHello()">0% (0)</md-button>
+             </div>
+           </section>
+         </accordion-heading>
+           <table>
+             <tr>
+              <td></td>
+              <td ng-repeat="user in data1.users">
+                {{user.name}}
+                <!--<md-text-float ng-maxlength="5" label="User" ng-model="user.name"> </md-text-float>-->
+              </td>
+             </tr>
+             <tr ng-repeat="time in data1.times">
+               <td>
+                 {{time.stamp}}
+                 <!--<md-text-float label="Time" ng-model="time.stamp"> </md-text-float>-->
+               </td>
+               <td ng-repeat="user in data1.users">
+                 <md-button class="md-raised md-primary" md-theme={{user.check}}>state</md-button>
+              </td>
+             </tr>
+          </table>
+        </accordion-group>
+     </accordion>
+ </accordion-group>
+</accordion>

@@ -1,0 +1,108 @@
+[
+	{ 
+		"title": "Stammtisch",
+		"description": "Neue Termine für den Stammtisch",
+		"data": 
+		[ 
+		 { 
+			"date": "2014-12-18",
+			"users": 
+			[
+				{
+				"name": "Daniel",
+				"check": "red"
+				},
+				{
+				"name": "Johannes",
+				"check": "amber"
+				}
+			],
+			"times": 
+			[
+				{
+				"stamp": "12:30"
+				},
+				{
+				"stamp": "15:45"
+				}
+			]
+		 },
+		 { 
+			"date": "2014-12-19",
+			"users": 
+			[
+				{
+				"name": "Daniel",
+				"check": "green"
+				},
+				{
+				"name": "Johannes",
+				"check": "green"
+				}
+			],
+			"times": 
+			[
+				{
+				"stamp": "12:30"
+				},
+				{
+				"stamp": "15:45"
+				}
+			]
+		 }
+		]
+	},
+	{ 
+		"title": "Angular proggen",
+		"description": "Neue Termine für ein Treffen zum proggen",
+		"data": 
+		[ 
+		 { 
+			"date": "2014-12-18",
+			"users": 
+			[
+				{
+				"name": "Daniel",
+				"check": "amber"
+				},
+				{
+				"name": "Johannes",
+				"check": "red"
+				}
+			],
+			"times": 
+			[
+				{
+				"stamp": "12:30"
+				},
+				{
+				"stamp": "15:45"
+				}
+			]
+		 },
+		 { 
+			"date": "2014-12-19",
+			"users": 
+			[
+				{
+				"name": "Daniel",
+				"check": "red"
+				},
+				{
+				"name": "Johannes",
+				"check": "red"
+				}
+			],
+			"times": 
+			[
+				{
+				"stamp": "12:30"
+				},
+				{
+				"stamp": "15:45"
+				}
+			]
+		 }
+		]
+	}
+]
