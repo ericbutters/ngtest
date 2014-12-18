@@ -19,7 +19,7 @@
            <section layout="horizontal">
              <b flex="90">{{data1.date}}</b>
              <div flex="10">
-              <md-button class="md-raised md-primary" md-theme="blue-grey" ng-click="sayHello()">0% (0)</md-button>
+              <md-button class="md-raised md-primary" md-theme="deep-orange" ng-click="sayHello()">{{getPercent(data1)}}</md-button>
              </div>
            </section>
          </accordion-heading>
@@ -37,7 +37,7 @@
                  <!--<md-text-float label="Time" ng-model="time.stamp"> </md-text-float>-->
                </td>
                <td ng-repeat="user in data1.users">
-                 <md-button class="md-raised md-primary" md-theme={{user.check}}>state</md-button>
+                 <md-button class="md-raised md-primary" md-theme={{getTheme(time.check,user)}}>STATE</md-button>
               </td>
              </tr>
           </table>

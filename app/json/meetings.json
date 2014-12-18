@@ -9,10 +9,12 @@
 			"users": 
 			[
 				{
+				"id": 0,
 				"name": "Daniel",
 				"check": "red"
 				},
 				{
+				"id": 1,
 				"name": "Johannes",
 				"check": "amber"
 				}
@@ -20,33 +22,39 @@
 			"times": 
 			[
 				{
-				"stamp": "12:30"
+				"stamp": "12:30",
+				"check": "0x0100"
 				},
 				{
-				"stamp": "15:45"
+				"stamp": "15:45",
+				"check": "0x0110"
 				}
 			]
 		 },
-		 { 
+		 {  
 			"date": "2014-12-19",
 			"users": 
 			[
 				{
+				"id": 0,
 				"name": "Daniel",
-				"check": "green"
+				"check": "red"
 				},
 				{
+				"id": 1,
 				"name": "Johannes",
-				"check": "green"
+				"check": "amber"
 				}
 			],
 			"times": 
 			[
 				{
-				"stamp": "12:30"
+				"stamp": "12:30",
+				"check": "0x0101"
 				},
 				{
-				"stamp": "15:45"
+				"stamp": "15:45",
+				"check": "0x1110"
 				}
 			]
 		 }
@@ -62,21 +70,25 @@
 			"users": 
 			[
 				{
+				"id": 0,
 				"name": "Daniel",
-				"check": "amber"
+				"check": "red"
 				},
 				{
+				"id": 1,
 				"name": "Johannes",
-				"check": "red"
+				"check": "amber"
 				}
 			],
 			"times": 
 			[
 				{
-				"stamp": "12:30"
+				"stamp": "12:30",
+				"check": "0x0111"
 				},
 				{
-				"stamp": "15:45"
+				"stamp": "15:45",
+				"check": "0x0110"
 				}
 			]
 		 },
@@ -85,21 +97,25 @@
 			"users": 
 			[
 				{
+				"id": 0,
 				"name": "Daniel",
 				"check": "red"
 				},
 				{
+				"id": 1,
 				"name": "Johannes",
-				"check": "red"
+				"check": "amber"
 				}
 			],
 			"times": 
 			[
 				{
-				"stamp": "12:30"
+				"stamp": "12:30",
+				"check": "0x0101"
 				},
 				{
-				"stamp": "15:45"
+				"stamp": "15:45",
+				"check": "0x0101"
 				}
 			]
 		 }

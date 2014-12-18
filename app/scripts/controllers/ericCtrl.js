@@ -11,13 +11,59 @@ angular.module('ngtestApp')
     $scope.cnts.push($scope.indexE);
     $http.get('json/meetings.json').success(function(data) {
         $scope.meetings = data;
+        /**/
+        
     });
-    $scope.getTheme = function(x) {
-      console.log("getTheme: " + x.name);
-      if(x.check)
-         return "amber";
-      else
-         return "deep-orange";
+    $scope.getPercent = function(data) {
+      console.log("getPercent: " + data.users[0].name + "NUM-USERS: " + data.users.length);
+      var numUsers = data.users.length;
+      var numTimes = data.times.length;
+      var pcent = [];
+      for(var j=0; j<numTimes; j++) {
+        var numTrues = 0;
+        var hex = parseInt(data.times[j].check);
+        for(var i=0; i<numUsers; i++) {
+        var state = (hex >> data.users[i].id*8) & 0xff;
+          switch(state) {
+            case 0x00: //FALSE
+              break;
+             case 0x01: //TRUE
+              numTrues++;
+              break;
+             case 0x10: //MAYBE
+              break;
+             case 0x11: //DEFAULT (unclicked)
+              break;
+             default:
+              console.log("STATE: UNKNOWN");
+              break;
+          }//switch
+        }//for users
+        pcent.push((100/numUsers)*numTrues);
+      }//for times
+      var cnt100 = 0;
+      for(var i=0; i<pcent.length; i++) {
+        if(pcent[i] == 100)
+          cnt100++;
+      }
+      return (cnt100)?"100% (" + cnt100.toString() + ")":"0% (0)";
+    }
+    $scope.getTheme = function(check,user) {
+      var hex = parseInt(check);
+      var state = (hex >> user.id*8) & 0xff;
+      switch(state) {
+        case 0x00: /*FALSE*/
+          return "red";
+         case 0x01: /*TRUE*/
+          return "green";
+         case 0x10: /*MAYBE*/
+          return "amber";
+         case 0x11: /*DEFAULT (unclicked)*/
+          return "grey";
+         default:
+          console.log("STATE: UNKNOWN");
+          break;
+      }
     }
     $scope.changeEric = function () {
       if(i){
