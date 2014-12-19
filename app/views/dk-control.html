@@ -13,7 +13,7 @@
        <div flex="30" style="overflow: visible;">
          <md-button class="md-raised md-primary" md-theme="teal" ng-click="sayHello($event)">{{meeting.booked}}</md-button>
          <md-button class="md-raised md-primary" md-theme="deep-purple" ng-click="sayHello()">Add</md-button>
-         <md-button class="md-raised md-primary" md-theme="deep-purple" ng-click="testRemove()">REMOVE</md-button>
+         <md-button class="md-raised md-primary" md-theme="deep-purple" ng-click="testRemove($index,$event)">REMOVE</md-button>
        </div>
        </section>
      </accordion-heading>

@@ -28,7 +28,13 @@ angular.module('ngtestApp')
         e.preventDefault();
         e.stopPropagation();
       }
-      console.log("Hello");
+    }
+    $scope.testRemove = function(i,e){
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      $scope.meetings.splice(i,1);
     }
 /*    
     $scope.getPercent = function(data) {
