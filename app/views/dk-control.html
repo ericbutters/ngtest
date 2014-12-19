@@ -1,14 +1,19 @@
+<!--<div class="cdkControl1" ng-repeat="date in dataa">
+  <b>DATE: {{date}}</b>
+</div>-->
+
 <div class="cdkControl1">
-<md-button class="md-raised md-primary" md-theme="deep-orange">Add</md-button>
+  <md-button class="md-raised md-primary" md-theme="deep-orange" ng-click="testAdd()">ADD</md-button>
 </div>  
 <accordion close-others="oneAtATime">
-  <accordion-group heading="{{meeting.title}}" ng-repeat="meeting in meetings" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+  <accordion-group heading="{{meeting.title}}" ng-repeat="meeting in meetings track by $index" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
      <accordion-heading>
        <section layout="horizontal">
-       <b flex="80">{{meeting.title}}</b>
-       <div flex="20">
-         <md-button class="md-raised md-primary" md-theme="teal" ng-click="sayHello()">0% (0)</md-button>
+       <b flex="70">{{meeting.title}}</b>
+       <div flex="30" style="overflow: visible;">
+         <md-button class="md-raised md-primary" md-theme="teal" ng-click="sayHello($event)">{{meeting.booked}}</md-button>
          <md-button class="md-raised md-primary" md-theme="deep-purple" ng-click="sayHello()">Add</md-button>
+         <md-button class="md-raised md-primary" md-theme="deep-purple" ng-click="testRemove()">REMOVE</md-button>
        </div>
        </section>
      </accordion-heading>
@@ -19,7 +24,7 @@
            <section layout="horizontal">
              <b flex="90">{{data1.date}}</b>
              <div flex="10">
-              <md-button class="md-raised md-primary" md-theme="deep-orange" ng-click="sayHello()">{{getPercent(data1)}}</md-button>
+               <md-button class="md-raised md-primary" md-theme="deep-orange" ng-click="sayHello()">{{data1.hit}}</md-button>
              </div>
            </section>
          </accordion-heading>
@@ -28,16 +33,14 @@
               <td></td>
               <td ng-repeat="user in data1.users">
                 {{user.name}}
-                <!--<md-text-float ng-maxlength="5" label="User" ng-model="user.name"> </md-text-float>-->
               </td>
              </tr>
              <tr ng-repeat="time in data1.times">
                <td>
                  {{time.stamp}}
-                 <!--<md-text-float label="Time" ng-model="time.stamp"> </md-text-float>-->
                </td>
-               <td ng-repeat="user in data1.users">
-                 <md-button class="md-raised md-primary" md-theme={{getTheme(time.check,user)}}>STATE</md-button>
+               <td ng-repeat="time in data1.times">
+                 <md-button class="md-raised md-primary" md-theme={{time.check[$index]}}>STATE</md-button>
               </td>
              </tr>
           </table>

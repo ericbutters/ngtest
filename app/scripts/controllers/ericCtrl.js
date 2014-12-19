@@ -1,9 +1,11 @@
 'use strict';
 
+
 angular.module('ngtestApp')
-  .controller('EricCtrl', ['$scope','$http', function ($scope, $http) {
+  .controller('EricCtrl', ['$scope','$http','MeetingService', function ($scope, $http, MeetingService) {
     var i=0;
-    $scope.mytheme = "amber"
+    $scope.mytheme = "amber";
+    $scope.ppcent = "100";
     $scope.cnt=1;
     $scope.indexE=1;
     $scope.name = 'Daniel';
@@ -13,7 +15,22 @@ angular.module('ngtestApp')
         $scope.meetings = data;
         /**/
         
+        $scope.dataa = MeetingService.setTheme(data);
     });
+    $scope.testAdd = function(){
+      console.log("in testAdd");
+      var tmp = $scope.meetings[0];
+      tmp.booked = "1";
+      $scope.meetings.push(tmp);
+    }
+    $scope.sayHello = function(e){
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      console.log("Hello");
+    }
+/*    
     $scope.getPercent = function(data) {
       console.log("getPercent: " + data.users[0].name + "NUM-USERS: " + data.users.length);
       var numUsers = data.users.length;
@@ -52,13 +69,13 @@ angular.module('ngtestApp')
       var hex = parseInt(check);
       var state = (hex >> user.id*8) & 0xff;
       switch(state) {
-        case 0x00: /*FALSE*/
+        case 0x00: //FALSE
           return "red";
-         case 0x01: /*TRUE*/
+         case 0x01: //TRUE
           return "green";
-         case 0x10: /*MAYBE*/
+         case 0x10: //MAYBE
           return "amber";
-         case 0x11: /*DEFAULT (unclicked)*/
+         case 0x11: //DEFAULT (unclicked)
           return "grey";
          default:
           console.log("STATE: UNKNOWN");
@@ -87,6 +104,7 @@ angular.module('ngtestApp')
      $scope.cnts.pop($scope.indexE);
      $scope.indexE--;
    }
+*/  
   }])
   .directive('ericDlg', function() {
     return {
@@ -94,5 +112,14 @@ angular.module('ngtestApp')
 //      transclude: true,
       
       templateUrl: 'views/dk-control.html'
+    };
+  })
+  .factory('MeetingService', function() {
+    return {
+      setTheme: function(meetings) {
+        console.log("in MeetingService::setTheme");
+        console.log("data[0].date is " + meetings[0].data[0].date);
+        return meetings[0].data;
+      }
     };
   });

@@ -1,124 +1,144 @@
 [
-	{ 
-		"title": "Stammtisch",
-		"description": "Neue Termine für den Stammtisch",
-		"data": 
-		[ 
-		 { 
-			"date": "2014-12-18",
-			"users": 
-			[
-				{
-				"id": 0,
-				"name": "Daniel",
-				"check": "red"
-				},
-				{
-				"id": 1,
-				"name": "Johannes",
-				"check": "amber"
-				}
-			],
-			"times": 
-			[
-				{
-				"stamp": "12:30",
-				"check": "0x0100"
-				},
-				{
-				"stamp": "15:45",
-				"check": "0x0110"
-				}
-			]
-		 },
-		 {  
-			"date": "2014-12-19",
-			"users": 
-			[
-				{
-				"id": 0,
-				"name": "Daniel",
-				"check": "red"
-				},
-				{
-				"id": 1,
-				"name": "Johannes",
-				"check": "amber"
-				}
-			],
-			"times": 
-			[
-				{
-				"stamp": "12:30",
-				"check": "0x0101"
-				},
-				{
-				"stamp": "15:45",
-				"check": "0x1110"
-				}
-			]
-		 }
-		]
-	},
-	{ 
-		"title": "Angular proggen",
-		"description": "Neue Termine für ein Treffen zum proggen",
-		"data": 
-		[ 
-		 { 
-			"date": "2014-12-18",
-			"users": 
-			[
-				{
-				"id": 0,
-				"name": "Daniel",
-				"check": "red"
-				},
-				{
-				"id": 1,
-				"name": "Johannes",
-				"check": "amber"
-				}
-			],
-			"times": 
-			[
-				{
-				"stamp": "12:30",
-				"check": "0x0111"
-				},
-				{
-				"stamp": "15:45",
-				"check": "0x0110"
-				}
-			]
-		 },
-		 { 
-			"date": "2014-12-19",
-			"users": 
-			[
-				{
-				"id": 0,
-				"name": "Daniel",
-				"check": "red"
-				},
-				{
-				"id": 1,
-				"name": "Johannes",
-				"check": "amber"
-				}
-			],
-			"times": 
-			[
-				{
-				"stamp": "12:30",
-				"check": "0x0101"
-				},
-				{
-				"stamp": "15:45",
-				"check": "0x0101"
-				}
-			]
-		 }
-		]
-	}
+    {
+        "data": [
+            {
+                "date": "2014-12-18", 
+                "hit": "1",
+                "times": [
+                    {
+                        "check": [
+                            "grey", 
+                            "grey"
+                        ], 
+                        "stamp": "12:30",
+                        "booked": "0"
+                    }, 
+                    {
+                        "check": [
+                            "red", 
+                            "red"
+                        ], 
+                        "stamp": "15:45",
+                        "booked": "0"
+                    }
+                ],  
+                "users": [
+                    {
+                        "id": 0, 
+                        "name": "Daniel"
+                    }, 
+                    {
+                        "id": 1, 
+                        "name": "Johannes"
+                    }
+                ]
+            }, 
+            {
+                "date": "2014-12-19", 
+                "hit": 0,
+                "times": [
+                    {
+                        "check": [
+                            "grey", 
+                            "grey"
+                        ], 
+                        "stamp": "12:30",
+                        "booked": "0"
+                    }, 
+                    {
+                        "check": [
+                            "red", 
+                            "red"
+                        ], 
+                        "stamp": "15:45",
+                        "booked": "0"
+                    }
+                ],  
+                "users": [
+                    {
+                        "id": 0, 
+                        "name": "Daniel"
+                    }, 
+                    {
+                        "id": 1, 
+                        "name": "Johannes"
+                    }
+                ]
+            }
+        ], 
+        "description": "Neue Termine fuer den Stammtisch", 
+        "title": "Stammtisch",
+        "booked": "0"
+    }, 
+    {
+        "data": [
+            {
+                "date": "2014-12-18", 
+                "hit": "1",
+                "times": [
+                    {
+                        "check": [
+                            "grey", 
+                            "grey"
+                        ], 
+                        "stamp": "12:30",
+                        "booked": "0"
+                    }, 
+                    {
+                        "check": [
+                            "red", 
+                            "red"
+                        ], 
+                        "stamp": "15:45",
+                        "booked": "0"
+                    }
+                ],  
+                "users": [
+                    {
+                        "id": 0, 
+                        "name": "Daniel"
+                    }, 
+                    {
+                        "id": 1, 
+                        "name": "Johannes"
+                    }
+                ]
+            }, 
+            {
+                "date": "2014-12-19", 
+                "hit": 0,
+                "times": [
+                    {
+                        "check": [
+                            "grey", 
+                            "grey"
+                        ], 
+                        "stamp": "12:30",
+                        "booked": "0"
+                    }, 
+                    {
+                        "check": [
+                            "red", 
+                            "red"
+                        ], 
+                        "stamp": "15:45",
+                        "booked": "0"
+                    }
+                ],  
+                "users": [
+                    {
+                        "id": 0, 
+                        "name": "Daniel"
+                    }, 
+                    {
+                        "id": 1, 
+                        "name": "Johannes"
+                    }
+                ]
+            }
+        ], 
+        "description": "Neue Termine fuecr ein Treffen zum proggen", 
+        "title": "Angular proggen",
+        "booked": "0"        
+    }
 ]
