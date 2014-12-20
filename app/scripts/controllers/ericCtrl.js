@@ -1,33 +1,72 @@
 'use strict';
 
-
 angular.module('ngtestApp')
-  .controller('EricCtrl', ['$scope','$http','MeetingService', function ($scope, $http, MeetingService) {
-    var i=0;
-    $scope.mytheme = "amber";
-    $scope.ppcent = "100";
-    $scope.cnt=1;
-    $scope.indexE=1;
-    $scope.name = 'Daniel';
-    $scope.cnts = [];
-    $scope.cnts.push($scope.indexE);
-    $http.get('json/meetings.json').success(function(data) {
-        $scope.meetings = data;
-        /**/
-        
-        $scope.dataa = MeetingService.setTheme(data);
-    });
-    $scope.testAdd = function(){
-      console.log("in testAdd");
-      var tmp = $scope.meetings[0];
-      tmp.booked = "1";
-      $scope.meetings.push(tmp);
+  .controller('EricCtrl', ['$scope','$http','$modal', function ($scope, $http,$modal) {
+
+    $scope.meetings = [];
+    $scope.tmp = [];
+    $scope.testEdit = function(i,e) {
+		if (e) {
+			e.preventDefault();
+			e.stopPropagation();
+		}
+		$scope.resData = {meeting: $scope.meetings[i]};
+		$scope.opts = {
+		backdrop: true,
+		backdropClick: true,
+		dialogFade: false,
+		keyboard: true,
+		size: 'lg',
+		templateUrl : 'views/default-control.html',
+		controller : ModalInstanceCtrl,
+		resolve: {
+			items:function() {
+				console.log(".." + $scope.resData.title);
+				return $scope.resData;
+			}
+		  }
+		}; //opts
+
+		var modalInstance = $modal.open($scope.opts);
+		modalInstance.result.then(function(){
+			//on ok button press
+			$scope.meetings[i] = $scope.resData.meeting;
+			},function(){
+			//on cancel button press
+			console.log("Modal Closed");
+			});
+	}; //testEdit 
+
+	var ModalInstanceCtrl = function($scope, $modalInstance, $modal, items) {
+		$scope.items = items;
+		$scope.ok = function () {
+			$modalInstance.close($scope.items);
+		};
+		$scope.cancel = function () {
+			$modalInstance.dismiss('cancel');
+		};
+	}   
+
+    $scope.loadJSON = function(def) {
+		var jsonurl = 'json/meetings.json';
+		if(def)
+			jsonurl = 'json/default.json';
+		
+		$http.get(jsonurl).success(function(data) {
+			console.log("json success(" + jsonurl + ")");
+			if($scope.meetings.length > 0){
+				for(var i=0; i<data.length; i++)
+					$scope.meetings.push(data[i]);
+			}else
+			{
+				$scope.meetings = data;
+			}
+			//$scope.tmp = data;
+		});	
     }
-    $scope.sayHello = function(e){
-      if (e) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
+    $scope.testAdd = function(def){
+      $scope.loadJSON(def);
+      //$scope.meetings.push($scope.tmp);
     }
     $scope.testRemove = function(i,e){
       if (e) {
@@ -36,96 +75,12 @@ angular.module('ngtestApp')
       }
       $scope.meetings.splice(i,1);
     }
-/*    
-    $scope.getPercent = function(data) {
-      console.log("getPercent: " + data.users[0].name + "NUM-USERS: " + data.users.length);
-      var numUsers = data.users.length;
-      var numTimes = data.times.length;
-      var pcent = [];
-      for(var j=0; j<numTimes; j++) {
-        var numTrues = 0;
-        var hex = parseInt(data.times[j].check);
-        for(var i=0; i<numUsers; i++) {
-        var state = (hex >> data.users[i].id*8) & 0xff;
-          switch(state) {
-            case 0x00: //FALSE
-              break;
-             case 0x01: //TRUE
-              numTrues++;
-              break;
-             case 0x10: //MAYBE
-              break;
-             case 0x11: //DEFAULT (unclicked)
-              break;
-             default:
-              console.log("STATE: UNKNOWN");
-              break;
-          }//switch
-        }//for users
-        pcent.push((100/numUsers)*numTrues);
-      }//for times
-      var cnt100 = 0;
-      for(var i=0; i<pcent.length; i++) {
-        if(pcent[i] == 100)
-          cnt100++;
-      }
-      return (cnt100)?"100% (" + cnt100.toString() + ")":"0% (0)";
-    }
-    $scope.getTheme = function(check,user) {
-      var hex = parseInt(check);
-      var state = (hex >> user.id*8) & 0xff;
-      switch(state) {
-        case 0x00: //FALSE
-          return "red";
-         case 0x01: //TRUE
-          return "green";
-         case 0x10: //MAYBE
-          return "amber";
-         case 0x11: //DEFAULT (unclicked)
-          return "grey";
-         default:
-          console.log("STATE: UNKNOWN");
-          break;
-      }
-    }
-    $scope.changeEric = function () {
-      if(i){
-        $scope.name = 'Daniel';
-        i=0;
-      }
-      else {
-        $scope.name = 'Eric';
-        i=1;
-      }
-      console.log("changeEric!" + $scope.name);
-    };
-   $scope.sayHello = function(){
-     console.log("Hello");
-   }
-   $scope.addEric = function () {
-     $scope.indexE++;
-     $scope.cnts.push($scope.indexE);
-   }
-   $scope.removeEric = function () {
-     $scope.cnts.pop($scope.indexE);
-     $scope.indexE--;
-   }
-*/  
-  }])
+  }]) //EricCtrl
   .directive('ericDlg', function() {
     return {
-//      restrict: 'E',
-//      transclude: true,
-      
+	  restrict: 'E',
+	  transclude: true,
       templateUrl: 'views/dk-control.html'
     };
-  })
-  .factory('MeetingService', function() {
-    return {
-      setTheme: function(meetings) {
-        console.log("in MeetingService::setTheme");
-        console.log("data[0].date is " + meetings[0].data[0].date);
-        return meetings[0].data;
-      }
-    };
-  });
+  }); //ericDlg
+

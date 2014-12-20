@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <h3 class="modal-title">Edit Meeting!</h3>
+</div>
+
+<div class="modal-body">
+<section layout="horizontal">
+<md-text-float flex="20" label="Title" ng-model="items.meeting.title"></md-text-float>
+<md-text-float flex="80" label="Description" ng-model="items.meeting.description"></md-text-float>
+</section>
+</div>
+
+
+<div class="modal-footer">
+    <md-button class="md-raised md-primary" md-theme="amber" ng-click="ok()">OK</md-button>
+    <md-button class="md-raised md-primary" md-theme="lime" ng-click="cancel()">CLOSE</md-button>
+</div>

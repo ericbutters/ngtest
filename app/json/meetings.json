@@ -73,38 +73,6 @@
     {
         "data": [
             {
-                "date": "2014-12-18", 
-                "hit": "1",
-                "times": [
-                    {
-                        "check": [
-                            "grey", 
-                            "grey"
-                        ], 
-                        "stamp": "12:30",
-                        "booked": "0"
-                    }, 
-                    {
-                        "check": [
-                            "red", 
-                            "red"
-                        ], 
-                        "stamp": "15:45",
-                        "booked": "0"
-                    }
-                ],  
-                "users": [
-                    {
-                        "id": 0, 
-                        "name": "Daniel"
-                    }, 
-                    {
-                        "id": 1, 
-                        "name": "Johannes"
-                    }
-                ]
-            }, 
-            {
                 "date": "2014-12-19", 
                 "hit": 0,
                 "times": [
@@ -114,14 +82,6 @@
                             "grey"
                         ], 
                         "stamp": "12:30",
-                        "booked": "0"
-                    }, 
-                    {
-                        "check": [
-                            "red", 
-                            "red"
-                        ], 
-                        "stamp": "15:45",
                         "booked": "0"
                     }
                 ],  

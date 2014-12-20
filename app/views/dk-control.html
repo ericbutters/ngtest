@@ -1,9 +1,6 @@
-<!--<div class="cdkControl1" ng-repeat="date in dataa">
-  <b>DATE: {{date}}</b>
-</div>-->
-
 <div class="cdkControl1">
-  <md-button class="md-raised md-primary" md-theme="deep-orange" ng-click="testAdd()">ADD</md-button>
+  <md-button class="md-raised md-primary" md-theme="deep-orange" ng-click="testAdd(1)">ADD</md-button>
+  <md-button class="md-raised md-primary" md-theme="deep-orange" ng-click="testAdd(0)">LOAD</md-button>
 </div>  
 <accordion close-others="oneAtATime">
   <accordion-group heading="{{meeting.title}}" ng-repeat="meeting in meetings track by $index" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
@@ -12,7 +9,7 @@
        <b flex="70">{{meeting.title}}</b>
        <div flex="30" style="overflow: visible;">
          <md-button class="md-raised md-primary" md-theme="teal" ng-click="sayHello($event)">{{meeting.booked}}</md-button>
-         <md-button class="md-raised md-primary" md-theme="deep-purple" ng-click="sayHello()">Add</md-button>
+         <md-button class="md-raised md-primary" md-theme="deep-purple" ng-click="testEdit($index,$event)">EDIT</md-button>
          <md-button class="md-raised md-primary" md-theme="deep-purple" ng-click="testRemove($index,$event)">REMOVE</md-button>
        </div>
        </section>
@@ -39,7 +36,7 @@
                <td>
                  {{time.stamp}}
                </td>
-               <td ng-repeat="time in data1.times">
+               <td ng-repeat="user in data1.users">
                  <md-button class="md-raised md-primary" md-theme={{time.check[$index]}}>STATE</md-button>
               </td>
              </tr>
