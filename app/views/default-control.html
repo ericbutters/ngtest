@@ -24,30 +24,36 @@
 	<div role="tabpanel" id="tab2-content" aria-labelledby="tab2" ng-switch-when="1" md-swipe-left="next()" md-swipe-right="previous()">
 		<section layout="horizontal">
 	    <div flex="50" class="cdkControl1">
-			<div class="btn-group" dropdown is-open="status.isopen">
-				  <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
-					Select applied date <span class="caret"></span>
-				  </button>
-				  <ul class="dropdown-menu" role="menu">
-					<li ng-repeat="date in items.meeting.data">
-						<md-button class="md-primary" md-theme="deep-orange" ng-click="setActiveDate(date.date)">{{date.date}}</md-button>
+			<div class="dropdown">
+			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu0" data-toggle="dropdown" aria-expanded="true">
+				Change applied date
+				<span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu0">
+				<li role="presentation" ng-repeat="date in items.meeting.data">
+						<md-button class="md-primary" md-theme="deep-orange" ng-click="setActiveDate(date)">{{date.date}}</md-button>
 						<md-button class="md-primary" md-theme="indigo" ng-click="deleteActiveDate($index)">X</md-button>
-					</li>
-				  </ul>
+				</li>
+			  </ul>
 			</div>
 			<!-- -->
-			<md-text-float flex="20" label="Date" disabled ng-model="acdate"></md-text-float>
-			<!--
-			<div class="btn-group" dropdown is-open="status.isopen">
-				  <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
-					Select applied time <span class="caret"></span>
-				  </button>
-				  <ul class="dropdown-menu" role="menu">
-					<li ng-repeat="time in items.meeting.data.times">
-						<md-button class="md-primary" md-theme="deep-orange" ng-click="setActiveDate(date.date)">{{time}}</md-button>
-					</li>
-				  </ul>
-			</div>	-->		
+			<md-text-float flex="20" label="Date" ng-model="acdate.date"></md-text-float>
+			<div class="dropdown">
+			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+				Change applied time
+				<span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+				<li role="presentation" ng-repeat="time in acdate.times">
+					<md-button class="md-primary" md-theme="deep-orange" ng-click="setActiveTime(time)">{{time.stamp}}</md-button>
+					<md-button class="md-primary" md-theme="indigo" ng-click="deleteActiveTime($index)">X</md-button>
+				</li>
+			  </ul>
+			</div>
+		    <md-text-float flex="20" label="Time" ng-model="actime.stamp"></md-text-float>
+		    <div collapse="isCollapsed">
+				<div class="well well-lg">Some content</div> 
+			</div>	
 		</div>
 		<div flex="50" class="cdkControl1">
         <datepicker ng-model="dt" min-date="minDate" show-weeks="true" class="well well-sm"></datepicker>

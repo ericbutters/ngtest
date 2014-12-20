@@ -64,6 +64,30 @@ angular.module('ngtestApp')
 		$scope.deleteActiveDate = function(i) {
 			$scope.items.meeting.data.splice(i,1);
 		}
+		$scope.setActiveTime = function(t) {
+			$scope.actime = t;
+		}
+		$scope.deleteActiveTime = function(i) {
+			$scope.items.meeting.data.times.splice(i,1);
+		}	
+		$scope.toggleDropdown = function($event) {
+			$event.preventDefault();
+			$event.stopPropagation();
+			console.log("toggle");
+			$scope.status.isopen = !$scope.status.isopen;
+		}
+		$scope.status = {
+			isopen: false
+		};
+
+		$scope.toggled = function(open) {
+			console.log("Dropdown is now");
+		};		
+		$scope.isCollapsed = true;
+		$scope.toggleCollapsed = function() {
+			console.log("toggle collapsed");
+			$scope.isCollapsed = !($scope.isCollapsed);
+		}
 	}   
 
     $scope.loadJSON = function(def) {
