@@ -3,10 +3,69 @@
 </div>
 
 <div class="modal-body">
-<section layout="horizontal">
-<md-text-float flex="20" label="Title" ng-model="items.meeting.title"></md-text-float>
-<md-text-float flex="80" label="Description" ng-model="items.meeting.description"></md-text-float>
-</section>
+<md-tabs class="md-accent" md-selected="data.selectedIndex" md-theme="pink">
+      <md-tab id="tab1" aria-controls="tab1-content">
+        TITLE
+      </md-tab>
+      <md-tab id="tab2" aria-controls="tab2-content" ng-disabled="data.secondLocked">
+        DATA
+      </md-tab>
+      <md-tab id="tab3" aria-controls="tab3-content">
+        USERS
+      </md-tab>
+</md-tabs>
+<ng-switch on="data.selectedIndex" class="tabpanel-container">
+	<div role="tabpanel" id="tab1-content" aria-labelledby="tab1" ng-switch-when="0" md-swipe-left="next()" md-swipe-right="previous()">
+		<section layout="horizontal">
+		<md-text-float flex="20" label="Title" ng-model="items.meeting.title"></md-text-float>
+		<md-text-float flex="80" label="Description" ng-model="items.meeting.description"></md-text-float>
+		</section>
+	</div>
+	<div role="tabpanel" id="tab2-content" aria-labelledby="tab2" ng-switch-when="1" md-swipe-left="next()" md-swipe-right="previous()">
+		<section layout="horizontal">
+	    <div flex="50" class="cdkControl1">
+			<div class="btn-group" dropdown is-open="status.isopen">
+				  <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+					Select applied date <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu" role="menu">
+					<li ng-repeat="date in items.meeting.data">
+						<md-button class="md-primary" md-theme="deep-orange" ng-click="setActiveDate(date.date)">{{date.date}}</md-button>
+						<md-button class="md-primary" md-theme="indigo" ng-click="deleteActiveDate($index)">X</md-button>
+					</li>
+				  </ul>
+			</div>
+			<!-- -->
+			<md-text-float flex="20" label="Date" disabled ng-model="acdate"></md-text-float>
+			<!--
+			<div class="btn-group" dropdown is-open="status.isopen">
+				  <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+					Select applied time <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu" role="menu">
+					<li ng-repeat="time in items.meeting.data.times">
+						<md-button class="md-primary" md-theme="deep-orange" ng-click="setActiveDate(date.date)">{{time}}</md-button>
+					</li>
+				  </ul>
+			</div>	-->		
+		</div>
+		<div flex="50" class="cdkControl1">
+        <datepicker ng-model="dt" min-date="minDate" show-weeks="true" class="well well-sm"></datepicker>
+        	<div flex="25" class="cdkControl2">
+				<md-button class="md-raised md-primary" md-theme="deep-orange" ng-click="printDT(dt)">{{dt | date:'fullDate' }}</md-button>
+			</div>
+		</div>
+		</section>	
+	</div>
+	<div role="tabpanel" id="tab3-content" aria-labelledby="tab3" ng-switch-when="2" md-swipe-left="next()" md-swipe-right="previous()">
+		View for Item #3<br/>
+		data.selectedIndex = 2
+	</div>
+</ng-switch>	
+	
+	
+	
+
 </div>
 
 

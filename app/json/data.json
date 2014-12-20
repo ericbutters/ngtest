@@ -1,0 +1,19 @@
+{
+	"date": "Sat Dec 20 2014", 
+	"hit": 0,
+	"times": [
+		{
+			"check": [
+				"grey"
+			], 
+			"stamp": "00:00",
+			"booked": "0"
+		}
+	],  
+	"users": [
+		{
+			"id": 0, 
+			"name": "Foo Bar"
+		}
+	]
+}

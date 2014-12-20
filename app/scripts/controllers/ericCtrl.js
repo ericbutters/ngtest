@@ -31,20 +31,39 @@ angular.module('ngtestApp')
 		modalInstance.result.then(function(){
 			//on ok button press
 			$scope.meetings[i] = $scope.resData.meeting;
+			//console.log("after: " + JSON.stringify($scope.meetings[i]));
 			},function(){
 			//on cancel button press
 			console.log("Modal Closed");
 			});
 	}; //testEdit 
 
-	var ModalInstanceCtrl = function($scope, $modalInstance, $modal, items) {
+	var ModalInstanceCtrl = function($scope, $modalInstance, $http, $modal,items) {
 		$scope.items = items;
+		$scope.printDT = function(d) {
+			$scope.dt = d;
+			$http.get('json/data.json').success(function(data) {
+				console.log("--> " + JSON.stringify(data));
+				data.date = d.toString().substring(0,15);
+				$scope.items.meeting.data.push(data);
+			});
+		}
+		$scope.today = function() {
+			$scope.dt = new Date();
+		};
+		$scope.today();
 		$scope.ok = function () {
 			$modalInstance.close($scope.items);
 		};
 		$scope.cancel = function () {
 			$modalInstance.dismiss('cancel');
 		};
+		$scope.setActiveDate = function(d) {
+			$scope.acdate = d;
+		}
+		$scope.deleteActiveDate = function(i) {
+			$scope.items.meeting.data.splice(i,1);
+		}
 	}   
 
     $scope.loadJSON = function(def) {
