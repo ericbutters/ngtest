@@ -78,7 +78,7 @@ angular.module('ngtestApp')
 			$scope.acdate = angular.copy(d);
 			console.log("copied date: " + JSON.stringify($scope.acdate) + " .. " + JSON.stringify($scope.actdateorig));
 			$scope.$watch('acdate.date', function(newvalue,oldvalue) {
-				if(newvalue != $scope.actdateorig.date && (newvalue.match(/^[A-Z]{1}[a-z]{2}[ ][A-Z]{1}[a-z]{2}[ ][0-3][0-9][ ][2][0][0-9]{2}$/))){
+				if(newvalue != $scope.actdateorig.date && (newvalue.match(/^[A-Z]{1}[a-z]{1,8}[,][ ][A-Z]{1}[a-z]{1,7}[ ][1-3]{1}[0-9]{1}[,][ ][2][0][0-9]{2}$/))){
 					$scope.showApplyDate(true);
 				}
 				else
@@ -93,7 +93,7 @@ angular.module('ngtestApp')
 		}
 		$scope.applyDateChange = function() {
 			console.log("apply date change: " + JSON.stringify($scope.acdateorig) + " .. " + JSON.stringify($scope.acdate));
-			$scope.actdateorig.date = $scope.acdate.date.toString().substring(0,15);
+			$scope.actdateorig.date = $scope.acdate.date;
 			console.log("apply date change: " + JSON.stringify($scope.acdateorig) + " .. " + JSON.stringify($scope.acdate));
 		}
 		$scope.applyDateChangeNew = function(d) {
