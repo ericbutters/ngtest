@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ngtestApp')
-  .controller('EricCtrl', ['$scope','$http','$modal', function ($scope, $http,$modal) {
+  .controller('EricCtrl', ['$scope','$http','$modal', '$filter', function ($scope, $http,$modal,$filter) {
 
     $scope.meetings = [];
     $scope.tmp = [];
@@ -38,18 +38,29 @@ angular.module('ngtestApp')
 			});
 	}; //testEdit 
 
-	var ModalInstanceCtrl = function($scope, $modalInstance, $http, $modal,items) {
+	var ModalInstanceCtrl = function($scope, $modalInstance, $http, $modal,items, $filter) {
 		$scope.items = items;
+		$scope.$watch('dt', function(newvalue,oldvalue) {
+			console.log("watch(dt): " + newvalue + " .. " + oldvalue + " .. " + $filter('date')($scope.dt, "fullDate"));
+		});
+		$scope.$watch('dtdk', function(newvalue,oldvalue) {
+			//console.log("watch(dtdk): " + newvalue + " .. " + oldvalue);
+		});
 		$scope.printDT = function(d) {
 			$scope.dt = d;
 			$http.get('json/data.json').success(function(data) {
 				console.log("--> " + JSON.stringify(data));
-				data.date = d.toString().substring(0,15);
+				data.date = d;
 				$scope.items.meeting.data.push(data);
 			});
 		}
+		$scope.changeDt = function(d) {
+			$scope.dtdk = $filter('date')(d, "fullDate");
+			console.log("changeDt: " + $filter('date')($scope.dt, "fullDate") + " .. " + $scope.dtdk + " .. " + $scope.dt + " .. " + d);
+		}
 		$scope.today = function() {
 			$scope.dt = new Date();
+			$scope.dtdk = $filter('date')($scope.dt, "fullDate");
 		};
 		$scope.today();
 		$scope.ok = function () {

@@ -42,14 +42,14 @@
 				<md-text-float flex="25" label="Applied Date" ng-model="acdate.date"></md-text-float>
 					<div flex="25" collapse="isCollapsedDate" style="padding-bottom: 5px;">
 					<md-button class="md-raised md-primary" md-theme="amber" ng-click="applyDateChange()">APPLY</md-button>
-					<md-button class="md-raised md-primary" md-theme="deep-orange" ng-click="applyDateChangeNew(dt)">NEW DATE</md-button>
 					</div>
-					
+					<md-button class="md-raised md-primary" md-theme="deep-orange" ng-click="applyDateChangeNew(dtdk)">NEW DATE</md-button>
 				</div>
 				<div>
-				<md-text-float flex="25" label="New Date" ng-model="dt"></md-text-float>
+				<!-- NEW DATE NEW DATE -->
+				<md-text-float flex="25" label="New Date" ng-model="dtdk"></md-text-float>
 					<div flex="25" style="padding-bottom: 5px;">
-					<md-button class="md-raised md-primary" md-theme="green" ng-click="printDT(dt)">APPLY</md-button>		
+					<md-button class="md-raised md-primary" md-theme="green" ng-click="printDT(dtdk)">APPLY</md-button>		
 					</div>
 				</div>
 			</section>
@@ -71,7 +71,7 @@
 			</div>	
 		</div>
 		<div flex="50" class="cdkControl1">
-        <datepicker ng-model="dt" min-date="minDate" show-weeks="true" class="well well-sm"></datepicker>
+        <datepicker ng-model="dt" ng-require="true" ng-change="changeDt(dt)" min-date="minDate" show-weeks="true" class="well well-sm"></datepicker>
         	<div flex="25" class="cdkControl2">
 				<!--<md-button class="md-raised md-primary" md-theme="deep-orange" ng-click="printDT(dt)">{{dt | date:'fullDate' }}</md-button>-->
 			</div>
