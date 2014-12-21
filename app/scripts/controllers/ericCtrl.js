@@ -67,8 +67,9 @@ angular.module('ngtestApp')
 			$scope.acdate = angular.copy(d);
 			console.log("copied date: " + JSON.stringify($scope.acdate) + " .. " + JSON.stringify($scope.actdateorig));
 			$scope.$watch('acdate.date', function(newvalue,oldvalue) {
-				if(newvalue != oldvalue /*&& (newvalue.match(/^[0-2][0-3]:[0-5][0-9]$/))*/)
+				if(newvalue != $scope.actdateorig.date && (newvalue.match(/^[A-Z]{1}[a-z]{2}[ ][A-Z]{1}[a-z]{2}[ ][0-3][0-9][ ][2][0][0-9]{2}$/))){
 					$scope.showApplyDate(true);
+				}
 				else
 					$scope.showApplyDate(false);
 			});	
@@ -90,13 +91,14 @@ angular.module('ngtestApp')
 			$scope.acdate.date = angular.copy(d);
 		}
 		$scope.setActiveTime = function(t) {
-			//$scope.actimeorig = t;
+			$scope.actimeorig = t;
 			$scope.actime = angular.copy(t);
-			$scope.actime = t;
-			
+			//$scope.actime = t;			
 			$scope.$watch('actime.stamp', function(newvalue,oldvalue) {
-				if((newvalue != $scope.actimeorig.stamp) && (newvalue.match(/^([2][0-3]|[01]?[0-9])([.:][0-5][0-9])?$/)))
+				if(newvalue != $scope.actimeorig.stamp && (newvalue.match(/^[0-3]{1}[0-9]{1}[:][0-5]{1}[0-9]{1}$/))) {
+					//console.log("=> " + newvalue.match(/^([2][0-3]|[01]?[0-9])([.:][0-5][0-9])?$/));
 					$scope.showApplyTime(true);
+				}
 				else
 					$scope.showApplyTime(false);
 			});
@@ -128,7 +130,7 @@ angular.module('ngtestApp')
 			console.log("Dropdown is now");
 		};
 		$scope.isCollapsedDate = true;
-		$scope.isCollapsedTime = false;
+		$scope.isCollapsedTime = true;
 		$scope.toggleCollapsedTime = function() {
 			console.log("toggle collapsedTime");
 			$scope.isCollapsedTime = !($scope.isCollapsedTime);
