@@ -40,6 +40,14 @@ angular.module('ngtestApp')
 
 	var ModalInstanceCtrl = function($scope, $modalInstance, $http, $modal,items, $filter) {
 		$scope.items = items;
+		$scope.username = "";
+		$scope.setActiveUser = function(user) {
+			if(angular.isUndefined(user))
+				console.log("setActiveUser: UNDEFINED");
+			else {
+				console.log("setActiveUser: " + JSON.stringify(user));
+			}
+		}
 		$scope.printDT = function(d) {
 			$scope.dt = d;
 			$http.get('json/data.json').success(function(data) {

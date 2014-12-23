@@ -87,14 +87,14 @@
 				  </button>
 				  
 				  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2"  ng-repeat="data in items.meeting.data">
-				  <md-button class="md-primary" ng-click="setActiveDate(date)">Add new user</md-button>			  
+				  <md-button class="md-primary" ng-click="setActiveUser(user)">Add new user</md-button>			  
 					<li role="presentation" ng-repeat="user in data.users">
-							<md-button class="md-primary" md-theme="deep-orange" ng-click="setActiveDate(date)">{{user.name}}</md-button>
+							<md-button class="md-primary" md-theme="deep-orange" ng-click="setActiveUser(user)">{{user.name}}</md-button>
 							<md-button class="md-primary" md-theme="indigo" ng-click="deleteActiveDate($index)">X</md-button>
 					</li>
 				  </ul>
 			</div>
-			<md-text-float flex="20" label="Time" ng-model="actime.stamp">DANIEL</md-text-float>
+			<md-text-float flex="20" label="Time" ng-show="usersSelected" ng-model="actime.stamp">DANIEL</md-text-float>
 		</div>
 	</div>
 </ng-switch>	
