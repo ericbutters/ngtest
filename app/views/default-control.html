@@ -39,17 +39,15 @@
 			<!-- -->
 			<section layout="horizontal">
 				<div style="padding-right: 30px;">
-				<md-text-float flex="25" label="Applied Date" ng-model="acdate.date"></md-text-float>
-					<div flex="25" collapse="isCollapsedDate" style="padding-bottom: 5px;">
-					<md-button class="md-raised md-primary" md-theme="amber" ng-click="applyDateChange()">APPLY</md-button>
-					</div>
-					<div flex="25" collapse="isCollapsedDate" style="padding-bottom: 5px;">
-					<md-button class="md-raised md-primary" md-theme="deep-orange" ng-click="applyDateChangeNew(dtdk)">NEW DATE</md-button>
+				<md-text-float flex="25" label="Applied Date" disabled ng-model="acdate.date"></md-text-float>
+					<div flex="25" style="padding-bottom: 5px;">
+					<md-button ng-show="showChangeNew1 == 1" class="md-raised md-primary" md-theme="deep-orange" ng-click="applyDateChangeNew(dtdk)">NEW DATE</md-button>
+					<md-button ng-show="showChangeNew0 == 1" class="md-raised md-primary" md-theme="amber" ng-click="applyDateChange()">APPLY</md-button>					
 					</div>
 				</div>
 				<div>
 				<!-- NEW DATE NEW DATE -->
-				<md-text-float flex="25" label="New Date" ng-model="dtdk"></md-text-float>
+				<md-text-float flex="25" class="long" label="New Date" ng-model="dtdk"></md-text-float>
 					<div flex="25" style="padding-bottom: 5px;">
 					<md-button class="md-raised md-primary" md-theme="green" ng-click="printDT(dtdk)">APPLY</md-button>		
 					</div>
@@ -73,7 +71,7 @@
 			</div>	
 		</div>
 		<div flex="50" class="cdkControl1">
-        <datepicker ng-model="dt" ng-require="true" ng-change="changeDt(dt)" min-date="minDate" show-weeks="true" class="well well-sm"></datepicker>
+        <datepicker class="datepickerd" ng-model="dt" ng-require="true" ng-change="changeDt(dt)" min-date="minDate" show-weeks="true" class="well well-sm"></datepicker>
         	<div flex="25" class="cdkControl2">
 				<!--<md-button class="md-raised md-primary" md-theme="deep-orange" ng-click="printDT(dt)">{{dt | date:'fullDate' }}</md-button>-->
 			</div>
@@ -81,8 +79,18 @@
 		</section>	
 	</div>
 	<div role="tabpanel" id="tab3-content" aria-labelledby="tab3" ng-switch-when="2" md-swipe-left="next()" md-swipe-right="previous()">
-		View for Item #3<br/>
-		data.selectedIndex = 2
+		<div class="dropdown">
+			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="true">
+				Change applied date
+				<span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2"  ng-repeat="data in items.meeting.data">
+				<li role="presentation" ng-repeat="user in data.users">
+						<md-button class="md-primary" md-theme="deep-orange" ng-click="setActiveDate(date)">{{user.name}}</md-button>
+						<md-button class="md-primary" md-theme="indigo" ng-click="deleteActiveDate($index)">X</md-button>
+				</li>
+			  </ul>
+		</div>
 	</div>
 </ng-switch>	
 	

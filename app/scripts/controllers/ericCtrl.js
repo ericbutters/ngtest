@@ -40,12 +40,6 @@ angular.module('ngtestApp')
 
 	var ModalInstanceCtrl = function($scope, $modalInstance, $http, $modal,items, $filter) {
 		$scope.items = items;
-		$scope.$watch('dt', function(newvalue,oldvalue) {
-			console.log("watch(dt): " + newvalue + " .. " + oldvalue + " .. " + $filter('date')($scope.dt, "fullDate"));
-		});
-		$scope.$watch('dtdk', function(newvalue,oldvalue) {
-			//console.log("watch(dtdk): " + newvalue + " .. " + oldvalue);
-		});
 		$scope.printDT = function(d) {
 			$scope.dt = d;
 			$http.get('json/data.json').success(function(data) {
@@ -78,13 +72,18 @@ angular.module('ngtestApp')
 			$scope.acdate = angular.copy(d);
 			console.log("copied date: " + JSON.stringify($scope.acdate) + " .. " + JSON.stringify($scope.actdateorig));
 			$scope.$watch('acdate.date', function(newvalue,oldvalue) {
-				if(newvalue != $scope.actdateorig.date && (newvalue.match(/^[A-Z]{1}[a-z]{1,8}[,][ ][A-Z]{1}[a-z]{1,7}[ ][1-3]{1}[0-9]{1}[,][ ][2][0][0-9]{2}$/))){
-					$scope.showApplyDate(true);
+				$scope.showChangeNew1 = 1;
+				if(newvalue != $scope.actdateorig.date 
+					&& (newvalue.match(/^((Monday)|(Tuesday)|(Wednesday)|(Thursday)|(Friday)|(Sunday))[,][ ]((January)|(February)|(March)|(April)|(May)|(June)|(July)|(August)|(September)|(October)|(November)|(December))[ ][1-3]?[0-9][,][ ][2][0][0-99]{2}$/)))
+				{
+					$scope.showChangeNew0 = 1;
 				}
 				else
-					$scope.showApplyDate(false);
+					$scope.showChangeNew0 = 0;
 			});	
 		}
+		$scope.showChangeNew0 = 0;
+		$scope.showChangeNew1 = 0;
 		$scope.deleteActiveDate = function(i) {
 			$scope.items.meeting.data.splice(i,1);
 		}
@@ -92,9 +91,7 @@ angular.module('ngtestApp')
 			$scope.isCollapsedDate = !show;
 		}
 		$scope.applyDateChange = function() {
-			console.log("apply date change: " + JSON.stringify($scope.acdateorig) + " .. " + JSON.stringify($scope.acdate));
 			$scope.actdateorig.date = $scope.acdate.date;
-			console.log("apply date change: " + JSON.stringify($scope.acdateorig) + " .. " + JSON.stringify($scope.acdate));
 		}
 		$scope.applyDateChangeNew = function(d) {
 			console.log("apply new date to old one");
@@ -106,8 +103,7 @@ angular.module('ngtestApp')
 			$scope.actime = angular.copy(t);
 			//$scope.actime = t;			
 			$scope.$watch('actime.stamp', function(newvalue,oldvalue) {
-				if(newvalue != $scope.actimeorig.stamp && (newvalue.match(/^[0-3]{1}[0-9]{1}[:][0-5]{1}[0-9]{1}$/))) {
-					//console.log("=> " + newvalue.match(/^([2][0-3]|[01]?[0-9])([.:][0-5][0-9])?$/));
+				if(newvalue != $scope.actimeorig.stamp && (newvalue.match(/^(([0-1]?[0-9])|([2][0-3])):([0-5]?[0-9]{2})$/))) {
 					$scope.showApplyTime(true);
 				}
 				else
@@ -118,10 +114,7 @@ angular.module('ngtestApp')
 			$scope.isCollapsedTime = !show;
 		}
 		$scope.applyTimeChange = function() {
-		
-			console.log("apply time change:" + JSON.stringify($scope.actimeorig) + " -- " + JSON.stringify($scope.actime));
 			$scope.actimeorig.stamp = $scope.actime.stamp;
-			console.log("apply time change:" + JSON.stringify($scope.actimeorig) + " -- " + JSON.stringify($scope.actime));
 
 		}
 		$scope.deleteActiveTime = function(i) {
