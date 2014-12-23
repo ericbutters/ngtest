@@ -79,17 +79,22 @@
 		</section>	
 	</div>
 	<div role="tabpanel" id="tab3-content" aria-labelledby="tab3" ng-switch-when="2" md-swipe-left="next()" md-swipe-right="previous()">
-		<div class="dropdown">
-			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="true">
-				Change applied date
-				<span class="caret"></span>
-			  </button>
-			  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2"  ng-repeat="data in items.meeting.data">
-				<li role="presentation" ng-repeat="user in data.users">
-						<md-button class="md-primary" md-theme="deep-orange" ng-click="setActiveDate(date)">{{user.name}}</md-button>
-						<md-button class="md-primary" md-theme="indigo" ng-click="deleteActiveDate($index)">X</md-button>
-				</li>
-			  </ul>
+		<div class="cdkControl1">
+			<div class="dropdown">
+				  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="true">
+					Change applied names
+					<span class="caret"></span>
+				  </button>
+				  
+				  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2"  ng-repeat="data in items.meeting.data">
+				  <md-button class="md-primary" ng-click="setActiveDate(date)">Add new user</md-button>			  
+					<li role="presentation" ng-repeat="user in data.users">
+							<md-button class="md-primary" md-theme="deep-orange" ng-click="setActiveDate(date)">{{user.name}}</md-button>
+							<md-button class="md-primary" md-theme="indigo" ng-click="deleteActiveDate($index)">X</md-button>
+					</li>
+				  </ul>
+			</div>
+			<md-text-float flex="20" label="Time" ng-model="actime.stamp">DANIEL</md-text-float>
 		</div>
 	</div>
 </ng-switch>	
