@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ngtestApp')
-  .controller('EricCtrl', ['$scope','$http','$modal', '$filter', function ($scope, $http,$modal,$filter) {
+  .controller('EricCtrl', ['$scope','$http','$modal', '$filter', 'md5', function ($scope, $http,$modal,$filter,md5) {
 
     $scope.meetings = [];
     $scope.tmp = [];
@@ -38,15 +38,19 @@ angular.module('ngtestApp')
 			});
 	}; //testEdit 
 
-	var ModalInstanceCtrl = function($scope, $modalInstance, $http, $modal,items, $filter) {
+	var ModalInstanceCtrl = function($scope, $modalInstance, $http, $modal,items, $filter, md5) {
 		$scope.items = items;
 		$scope.username = "";
-		$scope.setActiveUser = function(user) {
+		$scope.uindex = 0;
+		$scope.acuserorig;
+		$scope.setActiveUser = function(user,i) {
 			if(angular.isUndefined(user))
 				console.log("setActiveUser: UNDEFINED");
 			else {
 				console.log("setActiveUser: " + JSON.stringify(user));
+				$scope.acuserorig = angular.copy(user);
 				$scope.acuser = user;
+				$scope.uindex = i;
 			}
 			//$scope.$watch('acdate.acuser', function(newvalue,oldvalue) {
 				$scope.usersSelected = true;
@@ -56,8 +60,24 @@ angular.module('ngtestApp')
 		$scope.applyUserChange = function(u,i) {
 			//u.name = $scope.name;
 			//u.email = $scope.email
-			console.log("applyUserChange: " + u.name + " .. " + u.email + $scope.acuser.name + " .. " + $scope.acuser.email);
-		}
+			//console.log("applyUserChange: " + u.name + " .. " + u.email + $scope.acuser.name + " .. " + $scope.acuser.email);
+			//
+			var dhash = md5.createHash($scope.acuserorig.name  + $scope.acuserorig.email);
+			console.log("hash: " + dhash);
+			for (var ii=0; ii<$scope.items.meeting.data.length; ii++)
+				for (var jj=0; jj<$scope.items.meeting.data[ii].users.length; jj++)
+				{
+					console.log("for user: " + $scope.items.meeting.data[ii].users[jj].name);
+					var tmphash = md5.createHash($scope.items.meeting.data[ii].users[jj].name + $scope.items.meeting.data[ii].users[jj].email);
+					console.log("hash: " + tmphash);
+					if (dhash == tmphash)
+					{
+						$scope.items.meeting.data[ii].users[jj].name = $scope.acuser.name;
+						$scope.items.meeting.data[ii].users[jj].email = $scope.acuser.email;
+						console.log("changed name!");
+					}
+				}
+		} 
 		$scope.printDT = function(d) {
 			$scope.dt = d;
 			$http.get('json/data.json').success(function(data) {

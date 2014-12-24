@@ -86,17 +86,22 @@
 					<span class="caret"></span>
 				  </button>
 				  
-				  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2"  ng-repeat="data in items.meeting.data">
-				  <md-button class="md-primary" ng-click="setActiveUser(user)">Add new user</md-button>			  
+				  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
+				  <md-button class="md-primary" ng-click="setActiveUser(user)">Add new user</md-button>	
+				  <div ng-repeat="data in items.meeting.data">
 					<li role="presentation" ng-repeat="user in data.users">
-							<md-button class="md-primary" md-theme="deep-orange" ng-click="setActiveUser(user)">{{user.name}}</md-button>
+							<md-button class="md-primary" md-theme="deep-orange" ng-click="setActiveUser(user,$index)">{{user.name}}</md-button>
 							<md-button class="md-primary" md-theme="indigo" ng-click="deleteActiveDate($index)">X</md-button>
 					</li>
+				  </div>
 				  </ul>
 			</div>
+			<!--
+			TODO: get all user names from data[i].users and reduce by email. 
+			-->
 			<md-text-float flex="20" label="Time" ng-show="usersSelected" ng-model="acuser.name"></md-text-float>
 			<md-text-float flex="20" label="Email" ng-show="usersSelected" ng-model="acuser.email"></md-text-float>
-			<md-button class="md-raised md-primary" md-theme="amber" ng-click="applyUserChange(acuser,$index)">APPLY</md-button>		
+			<md-button class="md-raised md-primary" md-theme="amber" ng-click="applyUserChange(data.users,$index)">APPLY</md-button>		
 		</div>
 	</div>
 </ng-switch>	

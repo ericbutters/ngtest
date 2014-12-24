@@ -17,7 +17,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'ui.bootstrap',
-    'ngMaterial'
+    'ngMaterial',
+    'angular-md5'
   ])
   .directive('dkControl', function() {
     return {
