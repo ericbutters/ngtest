@@ -46,7 +46,17 @@ angular.module('ngtestApp')
 				console.log("setActiveUser: UNDEFINED");
 			else {
 				console.log("setActiveUser: " + JSON.stringify(user));
+				$scope.acuser = user;
 			}
+			//$scope.$watch('acdate.acuser', function(newvalue,oldvalue) {
+				$scope.usersSelected = true;
+				
+			//});				
+		}
+		$scope.applyUserChange = function(u,i) {
+			//u.name = $scope.name;
+			//u.email = $scope.email
+			console.log("applyUserChange: " + u.name + " .. " + u.email + $scope.acuser.name + " .. " + $scope.acuser.email);
 		}
 		$scope.printDT = function(d) {
 			$scope.dt = d;

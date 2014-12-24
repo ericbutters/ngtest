@@ -25,11 +25,13 @@
                 "users": [
                     {
                         "id": 0, 
-                        "name": "Daniel"
+                        "name": "Daniel",
+                        "email": "dakuit00@gmail.com"
                     }, 
                     {
                         "id": 1, 
-                        "name": "Johannes"
+                        "name": "Johannes",
+                        "email": "leerstring@gmail.com"
                     }
                 ]
             }, 
@@ -57,11 +59,13 @@
                 "users": [
                     {
                         "id": 0, 
-                        "name": "Daniel"
+                        "name": "Daniel",
+                        "email": "dakuit00@gmail.com"
                     }, 
                     {
                         "id": 1, 
-                        "name": "Johannes"
+                        "name": "Johannes",
+                        "email": "leerstring@gmail.com"                        
                     }
                 ]
             }
@@ -88,11 +92,13 @@
                 "users": [
                     {
                         "id": 0, 
-                        "name": "Daniel"
+                        "name": "Daniel",
+                        "email": "dakuit00@gmail.com"                        
                     }, 
                     {
                         "id": 1, 
-                        "name": "Johannes"
+                        "name": "Johannes",
+                        "email": "leerstring@gmail.com"                        
                     }
                 ]
             }

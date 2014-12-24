@@ -94,7 +94,9 @@
 					</li>
 				  </ul>
 			</div>
-			<md-text-float flex="20" label="Time" ng-show="usersSelected" ng-model="actime.stamp">DANIEL</md-text-float>
+			<md-text-float flex="20" label="Time" ng-show="usersSelected" ng-model="acuser.name"></md-text-float>
+			<md-text-float flex="20" label="Email" ng-show="usersSelected" ng-model="acuser.email"></md-text-float>
+			<md-button class="md-raised md-primary" md-theme="amber" ng-click="applyUserChange(acuser,$index)">APPLY</md-button>		
 		</div>
 	</div>
 </ng-switch>	
